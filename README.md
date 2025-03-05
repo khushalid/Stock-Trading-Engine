@@ -22,6 +22,10 @@ source env/bin/activate # On Windows use `env\Scripts\activate`
 python main.py
 ```
 
+## Output Image:
+<img src="Output/output.png" width="800">
+<br>
+
 ## Key Features
 
 - Supports 1,024 unique stock tickers
