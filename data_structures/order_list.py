@@ -1,41 +1,57 @@
+import threading
+
+class LockFree:
+    def __init__(self, initial_value):
+        self._value = initial_value
+        self._lock = threading.Lock()
+
+    def compare_and_swap(self, expected, new_value):
+        with self._lock:
+            if self._value == expected:
+                self._value = new_value
+                return True
+            return False
+
+    def get(self):
+        return self._value
+
 class OrderNode:
     def __init__(self, quantity, price):
         self.quantity = quantity
         self.price = price
-        self.next = None
+        self.next = LockFree(None)
 
-class OrderList:
+class LockFreeOrderList:
     def __init__(self):
-        self.head = None
+        self.head = LockFree(None)
 
     def add(self, quantity, price):
         new_node = OrderNode(quantity, price)
-        if self.head is None or self.compare(new_node, self.head):
-            new_node.next = self.head
-            self.head = new_node
-        else:
-            current = self.head
-            while current.next and not self.compare(new_node, current.next):
-                current = current.next
-            new_node.next = current.next
-            current.next = new_node
+        while True:
+            old_head = self.head.get()
+            new_node.next = LockFree(old_head)
+            if self.head.compare_and_swap(old_head, new_node):
+                return
 
     def remove_head(self):
-        if self.head:
-            removed = self.head
-            self.head = self.head.next
-            return removed
-        return None
+        while True:
+            old_head = self.head.get()
+            if old_head is None:
+                return None
+            new_head = old_head.next.get()
+            if self.head.compare_and_swap(old_head, new_head):
+                return old_head
 
     def peek(self):
-        return self.head
+        return self.head.get()
 
-class BuyOrderList(OrderList):
+
+class BuyOrderList(LockFreeOrderList):
     def compare(self, node1, node2):
         # For buy orders, higher price has priority
         return node1.price > node2.price
 
-class SellOrderList(OrderList):
+class SellOrderList(LockFreeOrderList):
     def compare(self, node1, node2):
         # For sell orders, lower price has priority
         return node1.price < node2.price
