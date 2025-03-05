@@ -19,11 +19,9 @@ def simulate_trading(engine, num_orders, delay):
 def main():
     engine = TradingEngine()
     
-    # Number of threads to simulate multiple brokers
     num_threads = 5
     # Number of orders per thread
     orders_per_thread = 1000
-    # Delay between orders (in seconds) to control rate
     delay = 0.01
 
     threads = []

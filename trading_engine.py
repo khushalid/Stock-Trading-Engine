@@ -38,8 +38,6 @@ class TradingEngine:
                 else:
                     sell_order.quantity -= trade_quantity
 
-            # Print trade details (in a real system, you'd record this in a database)
-            # print(f"Executed trade: {ticker_symbol}, Quantity: {trade_quantity}, Price: {sell_order.price}")
             print(f"Executed quantity @ price: {trade_quantity} @ ${sell_order.price:.2f} | Total value: ${trade_quantity * sell_order.price:.2f}")
 
 
