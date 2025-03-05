@@ -23,7 +23,7 @@ python main.py
 ```
 
 ## Output Image:
-<img src="Output/output.png" width="800">
+<img src="output.png" width="800">
 <br>
 
 ## Understanding the Output
