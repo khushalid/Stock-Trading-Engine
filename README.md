@@ -8,8 +8,8 @@ This project implements a real-time stock trading engine that matches buy and se
 
 1. Clone the repository: 
 ```python
-git clone [your-repo-url]
-cd [your-repo-name]
+git clone https://github.com/khushalid/Stock-Trading-Engine.git
+cd Stock-Trading-Engine
 ```
 
 2. Create and activate a virtual environment:
@@ -25,6 +25,13 @@ python main.py
 ## Output Image:
 <img src="Output/output.png" width="800">
 <br>
+
+## Understanding the Output
+The output shows how orders are matched and executed:
+1. Orders for the same stock (e.g., STOCK0112) are grouped together.
+2. Buy orders with prices higher than or equal to sell orders are matched.
+3. The quantity traded is the minimum of the buy and sell order quantities.
+4. Multiple trades may occur for a single order if it's partially filled by multiple counterparties.
 
 ## Key Features
 
