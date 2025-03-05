@@ -4,6 +4,24 @@
 
 This project implements a real-time stock trading engine that matches buy and sell orders for multiple stock tickers. It's designed to handle concurrent transactions efficiently, simulating a real-world stock exchange environment.
 
+## Setup and Installation
+
+1. Clone the repository: 
+```python
+git clone [your-repo-url]
+cd [your-repo-name]
+```
+
+2. Create and activate a virtual environment:
+```python
+python -m venv env
+source env/bin/activate # On Windows use `env\Scripts\activate`
+```
+3. Run the main.py file:
+```python
+python main.py
+```
+
 ## Key Features
 
 - Supports 1,024 unique stock tickers
@@ -29,15 +47,5 @@ This project implements a real-time stock trading engine that matches buy and se
 
 - `add_order(order_type, ticker_symbol, quantity, price)`: Adds a new order to the system.
 - `match_order(ticker_symbol)`: Matches buy and sell orders for a given ticker.
-
-## Running the Simulation
-
-To run the trading engine simulation:
-
-1. Ensure you have Python 3.x installed.
-2. Navigate to the project directory.
-3. Run the following command:
-python main.py
-
 
 
